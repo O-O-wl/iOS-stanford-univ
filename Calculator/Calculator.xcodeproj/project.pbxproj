@@ -54,6 +54,10 @@
 		0E51532521D3B4EB00E38A2B /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
+				0E51532621D3B4EB00E38A2B /* AppDelegate.swift */,
+				0E51532D21D3B4ED00E38A2B /* Assets.xcassets */,
+				0E51532F21D3B4ED00E38A2B /* LaunchScreen.storyboard */,
+				0E51533221D3B4ED00E38A2B /* Info.plist */,
 				0E51533821D3BB8800E38A2B /* Supporting Files */,
 				0E51532821D3B4EB00E38A2B /* ViewController.swift */,
 				0E51532A21D3B4EB00E38A2B /* Main.storyboard */,
@@ -64,10 +68,6 @@
 		0E51533821D3BB8800E38A2B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				0E51532621D3B4EB00E38A2B /* AppDelegate.swift */,
-				0E51532D21D3B4ED00E38A2B /* Assets.xcassets */,
-				0E51532F21D3B4ED00E38A2B /* LaunchScreen.storyboard */,
-				0E51533221D3B4ED00E38A2B /* Info.plist */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
