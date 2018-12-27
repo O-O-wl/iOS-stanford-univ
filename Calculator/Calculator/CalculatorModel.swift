@@ -12,19 +12,20 @@ class CalculatorModel{
     
     private var accumulator = 0.0
     
+    
+    private var operations : Dictionary<String , Double > = [
+    "π" : M_PI,
+    "e" : M_E ]
+    
+    
     func setOperand(operand : Double){}
     
     func performOperation(symbol : String){
-        switch symbol {
-        case "π":
-            accumulator=Double.pi
-        case "√":
-            accumulator=sqrt(accumulator)
-        default:
-            break
+        if let constant = operations[symbol]{
+            accumulator = constant
         }
-        
-    }
+        }
+    
     
     var result : Double{
         get{
