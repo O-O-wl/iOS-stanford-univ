@@ -10,16 +10,36 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    // 사용자 입력중인지를 나타내는 플래그
+    //==================
+    //    계산 프로퍼티
+    //==================
+    var displayValue : Double{
+        get{ // display.text 가 형변환이 불가능할수도있기떄문에 옵셔널강제추출이 필요
+            return Double(display.text!)!; <#default value#>
+        }
+        set{
+            // newValue는 displayValue(Double)에 set하려는 입력값
+            display.text = String(newValue)
+        }
+    }
+    //==============================
+    //    사용자 입력중인지를 나타내는 플래그
+    //==============================
     var userIsInTheMiddleOfTyping = false
     
-    // 라벨 --
+    //===============
+    //   입력창 라벨
+    //===============
     @IBOutlet weak var display: UILabel!
    
-    // 숫자키패드의 입력에 대한 콜백메소드
+    //===============================
+    //    숫자키패드의 입력에 대한 콜백메소드
+    //===============================
     @IBAction func touchDigit(_ sender: UIButton) {
         
-        // 버튼에서 title 추출
+        /************************
+            버튼에서 title 추출
+        *************************/
         let digit = sender.currentTitle!
         
         // 라벨에 직접적으로 들어갈 String  : 자동 형변환
