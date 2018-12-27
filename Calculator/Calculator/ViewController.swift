@@ -19,7 +19,7 @@ class ViewController: UIViewController {
          let textCurrentlyInDisplay = self.display.text!
         if(userIsInTheMiddleOfTyping){
         
-        display.text = textCurrentlyInDisplay+digit
+        display.text = String(Int(textCurrentlyInDisplay + digit)!)
         }
         else{
             display.text=digit
@@ -28,6 +28,19 @@ class ViewController: UIViewController {
     }
     
    
+    @IBAction func performOperation(_ sender: UIButton) {
+        userIsInTheMiddleOfTyping=false
+        
+        if let mathematicalSymbol = sender.currentTitle{
+
+        if(mathematicalSymbol == "𝝿"){
+            display.text = String(Double.pi)}
+        
+        
+        }
+        
+    }
+    
     
 }
 
