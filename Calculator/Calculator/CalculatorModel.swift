@@ -21,7 +21,12 @@ class CalculatorModel{
         "e" : Operation.Constant(M_E),
         "cos": Operation.UnaryOperation(cos),
         "√":Operation.UnaryOperation(sqrt),
-        ]
+        "-":Operation.BinaryOperation({$0 - $1 }),
+        "+":Operation.BinaryOperation({$0 + $1 }),
+        "×":Operation.BinaryOperation({$0 * $1 }),
+        "÷":Operation.BinaryOperation({$0 / $1 }),
+        "=":Operation.Equals
+    ]
     
     
     //======================
@@ -30,13 +35,12 @@ class CalculatorModel{
     enum Operation{
         case  Constant(Double)
         case  UnaryOperation((Double)->Double)
-        case  BinaryOperation
+        case  BinaryOperation((Double, Double) -> Double)
         case  Equals
     }
     
     func setOperand(operand : Double){
         accumulator=operand
-        print(cos(90.0))
     }
     
     //==================================================
@@ -48,15 +52,41 @@ class CalculatorModel{
             switch operation {
             case .Constant(let associatedValue): accumulator = associatedValue
             case .UnaryOperation(let associateFunction): accumulator = associateFunction(accumulator)
-            case .BinaryOperation:break
-            case .Equals:break
-            }}
+            case .BinaryOperation (let function) :
+                executePendingBinaryOperation()
+                pending = PengingBinaryOperationInfo(firstOperand:accumulator, binaryFunction:function)
+            case .Equals:
+                executePendingBinaryOperation()
+            }
+            
+        }
     }
     
+    //==========================
+    //     = 연산이랑 , 또는
+    //     체이닝 연산에서 불려짐
+    //=========================
     
-    struct pengingBinaryOperationInfo {
+    private func executePendingBinaryOperation(){
+    
+        if(pending != nil){
+            accumulator  = pending!.binaryFunction(pending!.firstOperand,accumulator)
+            pending = nil
+        }
+    }
+    
+    var pending : PengingBinaryOperationInfo?
+    
+    
+    /************************************
+            구조체 : 값 을 전달
+        클래스와 다르게 생성시 무조건
+        초기화 해주므로 , 선언시는 초기화 불필요
+     *************************************/
+    
+    struct PengingBinaryOperationInfo {
         var firstOperand : Double
-        func binaryFunction :(Double,Double)->Double
+        var binaryFunction : (Double,Double) -> Double
         
     }
     
