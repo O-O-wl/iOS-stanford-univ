@@ -50,9 +50,12 @@ class ViewController: UIViewController {
         // 라벨에 직접적으로 들어갈 String  : 자동 형변환
         let textCurrentlyInDisplay = self.display.text!
         
-        
+        //======================
+        //  계산기 초기값 0에서 입력시
+        //  0123꼴로 되지않기위해
+        //======================
         if(userIsInTheMiddleOfTypingOperand){
-            display.text = textCurrentlyInDisplay + digit //
+            display.text = textCurrentlyInDisplay + digit
         }
         else{
             display.text=digit

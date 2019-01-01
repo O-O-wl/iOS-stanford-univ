@@ -48,8 +48,10 @@ class CalculatorModel{
     // enum 열거형으로 분기시 enum의 프로퍼티만큼의 case가 있으면 됨
     //==================================================
     func performOperation(symbol : String){
+        // 입력받은 연산자를 키로  --- 열거형 벨류를 꺼낸다
         if let operation = operations[symbol]{
             switch operation {
+                // 벨류로 분기한다.
             case .Constant(let associatedValue): accumulator = associatedValue
             case .UnaryOperation(let associateFunction): accumulator = associateFunction(accumulator)
             case .BinaryOperation (let function) :
